@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Mi primer Login</title>
 
@@ -15,7 +15,7 @@
     <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
     <!-- Nuestro css-->
-    <link rel="stylesheet" type="text/css" href="static/css/index.css">
+    <link rel="stylesheet" type="text/css" href="static/css/index.css" th:href="@{/css/index.css}">
 
 </head>
 <body>
@@ -23,9 +23,9 @@
         <div class="col-sm-8 main-section">
             <div class="modal-content">
                 <div class="col-12 user-img">
-                    <img src="static/img/user.png"/>
+                    <img src="static/img/user.png" th:src="@{/img/user.png}"/>
                 </div>
-                <form class="col-12">
+                <form class="col-12" th:action="@{/login}" method="get">
                     <div class="form-group" id="user-group">
                         <input type="text" class="form-control" placeholder="Nombre de usuario"/>
                     </div>
@@ -37,6 +37,12 @@
                 <div class="col-12 forgot">
                     <a href="#">Recordar contrasena?</a>
                 </div>
+                <div th:if="${param.error}" class="alert alert-danger" role="alert">
+		            Invalid username and password.
+		        </div>
+		        <div th:if="${param.logout}" class="alert alert-success" role="alert">
+		            You have been logged out.
+		        </div>
             </div>
         </div>
     </div>
